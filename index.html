@@ -28,6 +28,25 @@
 
   /* ---------- 顶部标题 ---------- */
   header{padding:20px 2px 12px;}
+
+  /* ---------- 作者滚动条 ---------- */
+  .marquee{
+    margin:0 -14px 0;overflow:hidden;background:var(--card);
+    border-bottom:1px solid var(--line);position:relative;
+  }
+  .marquee .track{
+    display:inline-flex;white-space:nowrap;padding:7px 0;
+    font-size:12.5px;color:#8A9099;letter-spacing:.3px;
+    animation:mv 26s linear infinite;will-change:transform;
+  }
+  .marquee .seg{display:inline-block;padding-right:56px;}
+  .marquee .seg span{margin-right:12px;}
+  .marquee .dot{color:#C2C8CF;}
+  .marquee em{font-style:normal;color:#5C6570;}
+  @keyframes mv{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  @media (prefers-reduced-motion: reduce){
+    .marquee .track{animation:none;}
+  }
   h1{font-size:20px;margin:0 0 4px;letter-spacing:.01em;font-weight:600;}
   .sub{font-size:13px;color:var(--muted);margin:0;font-weight:400;}
 
@@ -156,6 +175,178 @@
   }
   .sheet .acts .primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:500;}
 
+  /* ---------- 模式切换 ---------- */
+  .modes{display:flex;gap:8px;padding:2px 0 4px;}
+  .mode{
+    flex:1 1 0;font:inherit;font-size:14px;padding:9px 6px;border-radius:9px;
+    border:1px solid var(--line);background:var(--card);color:#4A5058;cursor:pointer;
+  }
+  .mode.on{background:#DDEBFA;border-color:#B9D5F2;color:#2A5B91;font-weight:500;}
+
+  /* ---------- 配色面板 ---------- */
+  #colorPanel{padding-top:6px;}
+  .swatch{
+    height:104px;border-radius:12px;border:1px solid var(--line);
+    display:flex;align-items:flex-end;justify-content:flex-start;padding:10px 12px;
+    margin-bottom:14px;
+  }
+  .swatch span{font-family:var(--mono);font-size:13px;padding:3px 8px;border-radius:6px;
+    background:rgba(255,255,255,.82);color:#1B1E24;}
+  .row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+  .row label{flex:0 0 16px;font-family:var(--mono);font-size:13px;color:var(--muted);}
+  .row input[type=range]{flex:1 1 auto;min-width:0;accent-color:var(--accent);height:26px;}
+  .row .num{
+    flex:0 0 46px;text-align:right;font-family:var(--mono);font-size:13px;color:var(--ink);
+  }
+  .picker{display:flex;gap:10px;align-items:center;margin:6px 0 14px;}
+  .picker input[type=color]{
+    width:52px;height:40px;border:1px solid var(--line);border-radius:9px;background:none;padding:2px;
+  }
+  .picker .txt{
+    flex:1 1 auto;min-width:0;border:1px solid var(--line);border-radius:9px;
+    padding:9px 11px;font:inherit;font-size:14px;font-family:var(--mono);color:var(--ink);
+    background:var(--card);
+  }
+  .outs{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+  .out{
+    display:flex;align-items:center;gap:10px;padding:11px 13px;border-bottom:1px solid var(--line);
+  }
+  .out:last-child{border-bottom:0;}
+  .out .k{flex:0 0 auto;font-size:12px;color:var(--muted);width:76px;}
+  .out .v{flex:1 1 auto;min-width:0;font-family:var(--mono);font-size:13px;overflow-wrap:anywhere;}
+  .out .cp{
+    flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--accent);
+    font:inherit;font-size:12px;padding:5px 10px;border-radius:7px;cursor:pointer;
+  }
+  .out .cp:active{background:var(--accent-bg);}
+  .presets{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin:16px 0 6px;}
+  .presets button{
+    aspect-ratio:1/1;border:1px solid var(--line);border-radius:8px;cursor:pointer;padding:0;
+    position:relative;
+  }
+  .chips2{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px;}
+  .chips2 button{
+    border:1px solid var(--line);background:var(--card);font:inherit;font-size:12.5px;
+    padding:6px 10px;border-radius:7px;cursor:pointer;color:#4A5058;
+  }
+  .note2{font-size:12px;color:var(--muted);line-height:1.8;margin-top:14px;}
+
+  /* ---------- 触发器 · 拖拽搭建 ---------- */
+  #tgPanel{padding-top:8px;}
+  .tg-vers{display:flex;gap:8px;margin-bottom:12px;}
+  .tgver{
+    flex:1 1 0;font:inherit;font-size:13.5px;padding:9px 6px;border-radius:9px;cursor:pointer;
+    border:1px solid #E6D9BE;background:#FFFDF8;color:#7A6440;
+  }
+  .tgver.on{background:#F5A63C;border-color:#E3922B;color:#fff;font-weight:600;}
+  .tg-skin{background:#FBF4E6;border:1px solid #EADCC0;border-radius:14px;padding:10px 9px 12px;}
+  .tg-bar{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+  .tg-badge{font-size:11.5px;color:#fff;background:#7CBF3F;padding:3px 8px;border-radius:6px;letter-spacing:.5px;flex:0 0 auto;}
+  .tg-name{flex:1 1 auto;min-width:0;font:inherit;font-size:13px;color:#6B5636;border:1px solid #E6D9BE;background:#fff;border-radius:7px;padding:5px 9px;}
+
+  .tg-pal{position:sticky;top:0;z-index:3;background:#FBF4E6;padding:2px 0 9px;}
+  .tg-pal-tabs{display:flex;gap:6px;margin-bottom:8px;}
+  .tg-pal-tabs button{
+    flex:1 1 0;font:inherit;font-size:12.5px;padding:6px;border-radius:8px;cursor:pointer;
+    border:1px solid #E6D9BE;background:#fff;color:#7A6440;
+  }
+  .tg-pal-tabs .on{color:#fff;font-weight:600;}
+  .tg-pal-tabs .on[data-cat=event]{background:#5B9BE8;border-color:#4C8FE0;}
+  .tg-pal-tabs .on[data-cat=cond]{background:#F5A63C;border-color:#E3922B;}
+  .tg-pal-tabs .on[data-cat=act]{background:#7CBF3F;border-color:#6CB232;}
+  .tg-chips{display:flex;gap:7px;overflow-x:auto;padding:1px 0 3px;}
+  .tg-chips::-webkit-scrollbar{display:none;}
+  .tg-chips .cd{
+    flex:0 0 auto;font:inherit;font-size:12.5px;color:#5E4E33;background:#fff;
+    border:1px solid #E6D9BE;border-radius:8px;padding:7px 11px;white-space:nowrap;
+    cursor:grab;touch-action:none;user-select:none;-webkit-user-select:none;
+  }
+
+  .tg-canvas{display:flex;flex-direction:column;gap:9px;}
+  .tg-slot{background:#fff;border:1px dashed #D9C7A3;border-radius:11px;padding:8px 8px 7px;}
+  .tg-slot.over{background:#FFF7E6;border-color:#F5A63C;box-shadow:inset 0 0 0 1px #F5A63C;}
+  .tg-slot .sh{display:flex;align-items:center;gap:6px;font-size:12.5px;color:#7A6440;font-weight:600;margin-bottom:7px;}
+  .tg-slot .sh i{width:9px;height:9px;border-radius:3px;flex:0 0 auto;}
+  .tg-slot .sh .ev{background:#5B9BE8;} .tg-slot .sh .cd{background:#F5A63C;} .tg-slot .sh .ac{background:#7CBF3F;}
+  .tg-slot .sh .hint{margin-left:auto;font-weight:400;font-size:11px;color:#B6A283;}
+  .tg-slot .body{display:flex;flex-direction:column;gap:6px;min-height:32px;}
+  .tg-slot .ph{font-size:12px;color:#C4B49B;padding:5px 2px;}
+
+  .tg-blk{
+    display:flex;flex-wrap:wrap;align-items:center;gap:6px;
+    background:#FDFBF5;border:1px solid #EDE3CC;border-radius:9px;padding:8px 9px;
+    touch-action:none;user-select:none;-webkit-user-select:none;
+  }
+  .tg-blk.moving{opacity:.35;}
+  .tg-blk .grip{flex:0 0 auto;color:#CBB994;font-size:11px;letter-spacing:-1px;}
+  .tg-blk .nm{flex:1 1 auto;min-width:0;font-size:12.5px;color:#5E4E33;}
+  .tg-blk .tag{font-size:10.5px;color:#fff;border-radius:4px;padding:1px 5px;flex:0 0 auto;}
+  .tg-blk .tag.cond{background:#F5A63C;}
+  .tg-blk .tag.act{background:#7CBF3F;}
+  .tg-blk select{
+    font:inherit;font-size:11.5px;color:#6B5636;border:1px solid #E6D9BE;background:#fff;
+    border-radius:6px;padding:2px 4px;max-width:110px;
+  }
+  .tg-blk .pbtn{
+    flex:0 1 auto;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+    font:inherit;font-size:11.5px;color:#2A5B91;background:#EAF2FC;border:1px solid #C9DEF5;
+    border-radius:6px;padding:3px 7px;cursor:pointer;
+  }
+  .tg-blk .x{flex:0 0 auto;border:0;background:none;color:#C4B49B;font-size:12px;padding:2px 3px;cursor:pointer;}
+
+  .drag-ghost{
+    position:fixed;z-index:999;pointer-events:none;transform:translate(-50%,-50%);
+    background:#fff;border:1px solid #F5A63C;border-radius:9px;padding:7px 11px;
+    font-size:12.5px;color:#5E4E33;box-shadow:0 8px 22px rgba(0,0,0,.18);white-space:nowrap;
+  }
+
+  .tg-vars{background:#fff;border:1px solid #E6D9BE;border-radius:11px;padding:9px;margin-top:10px;}
+  .tg-vh{display:flex;align-items:center;gap:6px;font-size:12.5px;color:#7A6440;font-weight:600;margin-bottom:7px;}
+  .tg-vh i{width:9px;height:9px;border-radius:3px;background:#B58BE8;flex:0 0 auto;}
+  .tg-vh .hint{margin-left:auto;font-weight:400;font-size:11px;color:#B6A283;}
+  .tg-list2{display:flex;flex-direction:column;gap:6px;}
+  .tg-var{display:flex;align-items:center;gap:7px;font-size:12.5px;color:#5E4E33;
+    background:#FDFBF5;border:1px solid #EDE3CC;border-radius:8px;padding:6px 8px;}
+  .tg-var .ty{font-size:11px;color:#B6A283;}
+  .tg-var .del{margin-left:auto;border:0;background:none;color:#C4B49B;font-size:12px;cursor:pointer;}
+  .tg-newvar{display:flex;gap:6px;margin-top:8px;}
+  .tg-newvar input,.tg-newvar select{
+    font:inherit;font-size:12px;border:1px solid #E6D9BE;background:#fff;border-radius:7px;padding:6px 7px;min-width:0;
+  }
+  .tg-newvar input{flex:1 1 auto;}
+  .tg-newvar select{flex:0 0 auto;}
+  .tg-newvar button{
+    flex:0 0 auto;font:inherit;font-size:12px;padding:6px 11px;border-radius:7px;cursor:pointer;
+    border:1px solid #E3922B;background:#F5A63C;color:#fff;
+  }
+  .tg-foot{display:flex;gap:8px;margin-top:10px;}
+  .tg-foot button{
+    flex:1 1 0;font:inherit;font-size:12.5px;padding:8px;border-radius:8px;cursor:pointer;
+    border:1px solid #E6D9BE;background:#fff;color:#7A6440;
+  }
+  #tgOut{
+    margin-top:9px;background:#2B2E33;color:#E7E9EC;border-radius:9px;padding:10px;
+    font-family:var(--mono);font-size:11.5px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere;
+  }
+  .tg-empty{font-size:12px;color:#C4B49B;padding:4px 2px;}
+
+  .ip-search{
+    width:100%;box-sizing:border-box;font:inherit;font-size:14px;color:var(--ink);
+    border:1px solid var(--line);border-radius:9px;padding:9px 11px;margin:2px 0 6px;background:#fff;
+  }
+  .ip-tip{font-size:12px;color:var(--muted);margin:0 0 8px;}
+  .ip-list{max-height:52vh;overflow-y:auto;border:1px solid var(--line);border-radius:10px;background:#fff;}
+  .ip-row{
+    display:flex;align-items:center;gap:10px;width:100%;text-align:left;font:inherit;font-size:13px;
+    color:var(--ink);background:#fff;border:0;border-bottom:1px solid var(--line);
+    padding:10px 12px;cursor:pointer;
+  }
+  .ip-row:last-child{border-bottom:0;}
+  .ip-row em{margin-left:auto;font-style:normal;font-family:var(--mono);font-size:12px;color:var(--muted);}
+  .ip-row:active{background:var(--accent-bg);}
+
+  footer{margin-top:22px;font-size:12px;color:var(--muted);line-height:1.85;padding:0 2px;}
+
   footer{margin-top:22px;font-size:12px;color:var(--muted);line-height:1.85;padding:0 2px;}
   footer a{color:var(--muted);}
 
@@ -171,11 +362,22 @@
 <body>
 <div class="shell">
 
+  <div class="marquee" aria-label="作者信息">
+    <div class="track" id="mqTrack"></div>
+  </div>
+
   <header>
     <h1>迷你世界 ID 查询</h1>
     <p class="sub">输入数字查名字，输入名字查 ID · 点按复制，长按看详情</p>
   </header>
 
+  <div class="modes">
+    <button class="mode on" data-mode="id">查 ID</button>
+    <button class="mode" data-mode="color">配色</button>
+    <button class="mode" data-mode="tg">触发器</button>
+  </div>
+
+  <div id="idPanel">
   <div class="search-wrap">
     <div class="search">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
@@ -191,6 +393,104 @@
     <div class="grid" id="grid"></div>
   </div>
   <button class="more" id="more" style="display:none">显示更多</button>
+  </div>
+
+  <!-- ===== 配色面板 ===== -->
+  <div id="colorPanel" hidden>
+    <div class="swatch" id="swatch">
+      <span id="swatchText">#FFFFFF</span>
+    </div>
+
+    <div class="picker">
+      <input type="color" id="picker" value="#ffffff" aria-label="取色">
+      <input class="txt" id="hexIn" type="text" inputmode="text" autocomplete="off"
+             placeholder="粘贴 #FF0000 / 0xFF0000 / rgb(255,0,0)" aria-label="颜色代码输入">
+    </div>
+
+    <div class="row">
+      <label for="rR">R</label>
+      <input type="range" id="rR" min="0" max="255" value="255">
+      <span class="num" id="rN">255</span>
+    </div>
+    <div class="row">
+      <label for="rG">G</label>
+      <input type="range" id="rG" min="0" max="255" value="255">
+      <span class="num" id="gN">255</span>
+    </div>
+    <div class="row">
+      <label for="rB">B</label>
+      <input type="range" id="rB" min="0" max="255" value="255">
+      <span class="num" id="bN">255</span>
+    </div>
+
+    <div class="outs">
+      <div class="out"><span class="k">聊天彩字</span><span class="v" id="outChat">#FFFFFF</span><button class="cp" data-copy="outChat">复制</button></div>
+      <div class="out"><span class="k">脚本颜色值</span><span class="v" id="outHex">0xFFFFFFFF</span><button class="cp" data-copy="outHex">复制</button></div>
+      <div class="out"><span class="k">ColorQuad</span><span class="v" id="outCQ">ColorQuad.new(255,255,255,255)</span><button class="cp" data-copy="outCQ">复制</button></div>
+      <div class="out"><span class="k">RGB 整数</span><span class="v" id="outInt">16777215</span><button class="cp" data-copy="outInt">复制</button></div>
+      <div class="out"><span class="k">ARGB 整数</span><span class="v" id="outArgb">4294967295</span><button class="cp" data-copy="outArgb">复制</button></div>
+    </div>
+
+    <div class="presets" id="presets"></div>
+
+    <div class="chips2">
+      <button data-chat="#R">#R 红</button>
+      <button data-chat="#G">#G 绿</button>
+      <button data-chat="#B">#B 蓝</button>
+      <button data-chat="#Y">#Y 黄</button>
+      <button data-chat="#K">#K 黑</button>
+      <button data-chat="#W">#W 白</button>
+    </div>
+
+    <p class="note2">
+      聊天彩字：在聊天框里先打代码再接文字，如「#R你好」，区分大小写。<br>
+      脚本/UI：颜色值用 0xAARRGGBB（前两位是透明度），或 ColorQuad.new(红,绿,蓝,透明度)。
+    </p>
+  </div>
+
+  <!-- ===== 触发器 · 拖拽搭建 ===== -->
+  <div id="tgPanel" hidden>
+    <div class="tg-vers">
+      <button class="tgver on" data-ver="2">2.0 触发器</button>
+      <button class="tgver" data-ver="3">3.0 触发器</button>
+    </div>
+
+    <div class="tg-skin">
+      <div class="tg-bar">
+        <span class="tg-badge">触发器</span>
+        <input class="tg-name" id="tgName" value="未命名触发器" aria-label="触发器名称">
+      </div>
+
+      <div class="tg-pal">
+        <div class="tg-pal-tabs">
+          <button data-cat="event" class="on">事件</button>
+          <button data-cat="cond">条件</button>
+          <button data-cat="act">动作</button>
+        </div>
+        <div class="tg-chips" id="tgChips"></div>
+      </div>
+
+      <div class="tg-canvas" id="tgCanvas"></div>
+
+      <div class="tg-vars">
+        <div class="tg-vh"><i></i>变量<span class="hint">可在参数里引用</span></div>
+        <div class="tg-list2" id="listVar"></div>
+        <div class="tg-newvar">
+          <input id="varName" placeholder="变量名，如「分数」" aria-label="变量名">
+          <select id="varType" aria-label="变量类型">
+            <option>整数</option><option>小数</option><option>字符串</option><option>布尔</option><option>数组</option>
+          </select>
+          <button id="varAdd">添加</button>
+        </div>
+      </div>
+
+      <div class="tg-foot">
+        <button id="tgCode">查看脚本结构</button>
+        <button id="tgReset">清空</button>
+      </div>
+      <pre id="tgOut" hidden></pre>
+    </div>
+  </div>
 
   <footer>
     数据来源：迷你世界官方开发者文档「方块表 / 道具表 / 生物表」（developers.mini1.cn，2023-05-09 版）。<br>
@@ -476,6 +776,529 @@ function showToast(msg){
 
 function escapeHTML(s){ return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
 function escapeAttr(s){ return escapeHTML(s); }
+
+/* ---------- 作者滚动条 ---------- */
+(function(){
+  const one = '<span>作者迷你号</span><em>1908729102</em><span class="dot">·</span>'
+            + '<em>&lt;a&gt;白泠</em><span class="dot">·</span>';
+  const seg = one.repeat(3);
+  document.getElementById("mqTrack").innerHTML =
+    '<div class="seg">' + seg + '</div><div class="seg">' + seg + '</div>';
+})();
+
+/* ---------- 配色工具 ---------- */
+const modeBtns = document.querySelectorAll(".mode");
+const idPanel = document.getElementById("idPanel");
+const colorPanel = document.getElementById("colorPanel");
+
+modeBtns.forEach(b => b.addEventListener("click", () => {
+  modeBtns.forEach(x => x.classList.toggle("on", x === b));
+  const m = b.dataset.mode;
+  idPanel.hidden = (m !== "id");
+  colorPanel.hidden = (m !== "color");
+  document.getElementById("tgPanel").hidden = (m !== "tg");
+}));
+
+const picker = document.getElementById("picker");
+const hexIn = document.getElementById("hexIn");
+const rR = document.getElementById("rR"), rG = document.getElementById("rG"), rB = document.getElementById("rB");
+const rN = document.getElementById("rN"), gN = document.getElementById("gN"), bN = document.getElementById("bN");
+const swatch = document.getElementById("swatch"), swatchText = document.getElementById("swatchText");
+const outChat = document.getElementById("outChat"), outHex = document.getElementById("outHex");
+const outCQ = document.getElementById("outCQ"), outInt = document.getElementById("outInt"), outArgb = document.getElementById("outArgb");
+
+const pad = n => n.toString(16).padStart(2, "0").toUpperCase();
+
+let CR = 255, CG = 255, CB = 255;
+
+function setColor(r, g, b, skipSliders){
+  CR = Math.max(0, Math.min(255, Math.round(r)));
+  CG = Math.max(0, Math.min(255, Math.round(g)));
+  CB = Math.max(0, Math.min(255, Math.round(b)));
+  const hex = "#" + pad(CR) + pad(CG) + pad(CB);
+  if(!skipSliders){ rR.value = CR; rG.value = CG; rB.value = CB; }
+  rN.textContent = CR; gN.textContent = CG; bN.textContent = CB;
+  picker.value = hex.toLowerCase();
+  swatch.style.background = hex;
+  swatchText.textContent = hex;
+  swatchText.style.color = (CR * 0.299 + CG * 0.587 + CB * 0.114) > 150 ? "#1B1E24" : "#FFFFFF";
+  swatchText.style.background = (CR * 0.299 + CG * 0.587 + CB * 0.114) > 150 ? "rgba(255,255,255,.86)" : "rgba(0,0,0,.42)";
+  outChat.textContent = hex;
+  outHex.textContent = "0xFF" + pad(CR) + pad(CG) + pad(CB);
+  outCQ.textContent = `ColorQuad.new(${CR},${CG},${CB},255)`;
+  outInt.textContent = String(CR * 65536 + CG * 256 + CB);
+  outArgb.textContent = String(CR * 65536 + CG * 256 + CB + 4278190080);
+}
+
+[rR, rG, rB].forEach(el => el.addEventListener("input", () => {
+  setColor(+rR.value, +rG.value, +rB.value);
+}));
+picker.addEventListener("input", () => {
+  const v = picker.value;
+  setColor(parseInt(v.slice(1,3),16), parseInt(v.slice(3,5),16), parseInt(v.slice(5,7),16));
+});
+
+function parseColor(s){
+  s = String(s).trim();
+  let m;
+  if((m = s.match(/^#?([0-9a-f]{6})$/i))) return [m[1].slice(0,2), m[1].slice(2,4), m[1].slice(4,6)].map(h => parseInt(h,16));
+  if((m = s.match(/^0x([0-9a-f]{6,8})$/i))) { const h = m[1].slice(-6); return [h.slice(0,2), h.slice(2,4), h.slice(4,6)].map(x => parseInt(x,16)); }
+  if((m = s.match(/^#([0-9a-f])([0-9a-f])([0-9a-f])$/i))) return [parseInt(m[1]+m[1],16), parseInt(m[2]+m[2],16), parseInt(m[3]+m[3],16)];
+  if((m = s.match(/^rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})/i))) return [+m[1], +m[2], +m[3]];
+  if((m = s.match(/^\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/))) return [+m[1], +m[2], +m[3]];
+  if((m = s.match(/^(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})$/))) return [+m[1], +m[2], +m[3]];
+  return null;
+}
+
+hexIn.addEventListener("input", () => {
+  const p = parseColor(hexIn.value);
+  if(p) setColor(p[0], p[1], p[2]);
+});
+
+const PRESETS = [
+  ["红", "#FF0000"], ["橙", "#FF7F00"], ["黄", "#FFFF00"], ["绿", "#00FF00"],
+  ["青", "#00FFFF"], ["蓝", "#0000FF"], ["紫", "#8B00FF"], ["粉", "#FF69B4"],
+  ["白", "#FFFFFF"], ["灰", "#808080"], ["深灰", "#4D4D4D"], ["黑", "#000000"],
+  ["棕", "#8B4513"], ["金", "#FFD700"], ["珊瑚", "#FF7F50"], ["橄榄", "#808000"]
+];
+const presetsEl = document.getElementById("presets");
+presetsEl.innerHTML = PRESETS.map(([n, h]) =>
+  `<button title="${n} ${h}" aria-label="${n}" data-hex="${h}" style="background:${h}"></button>`
+).join("");
+presetsEl.addEventListener("click", e => {
+  const b = e.target.closest("button"); if(!b) return;
+  const h = b.dataset.hex;
+  setColor(parseInt(h.slice(1,3),16), parseInt(h.slice(3,5),16), parseInt(h.slice(5,7),16));
+});
+
+document.querySelectorAll(".cp").forEach(b => b.addEventListener("click", () => {
+  const t = document.getElementById(b.dataset.copy).textContent;
+  copyText(t).then(ok => showToast(ok ? "已复制 " + t : "复制失败"));
+}));
+
+document.querySelectorAll("[data-chat]").forEach(b => b.addEventListener("click", () => {
+  const code = b.dataset.chat;
+  copyText(code).then(ok => showToast(ok ? "已复制聊天代码 " + code + "，后面直接接文字" : "复制失败"));
+}));
+
+setColor(255, 255, 255);
+
+/* ---------- 触发器 · 拖拽搭建 ---------- */
+const TG = {
+  event: [
+    { n:"玩家进入游戏" }, { n:"玩家离开游戏" }, { n:"玩家死亡", p:[{k:"玩家",o:["触发玩家","所有玩家"]}] },
+    { n:"玩家重生" }, { n:"玩家点击方块", p:[{k:"方块",o:["任意方块","草方块","石头"]}] },
+    { n:"玩家破坏方块", p:[{k:"方块",o:["任意方块","草方块","石头"]}] },
+    { n:"玩家放置方块", p:[{k:"方块",o:["任意方块","石头","玻璃"]}] },
+    { n:"玩家攻击命中", p:[{k:"目标",o:["生物","玩家","怪物"]}] },
+    { n:"玩家受到伤害", p:[{k:"来源",o:["任意","生物","玩家"]}] },
+    { n:"玩家使用道具", p:[{k:"道具",o:["任意道具","扳手","传送卷轴"]}] },
+    { n:"玩家拾取道具", p:[{k:"道具",o:["任意道具","石头","钻石"]}] },
+    { n:"玩家进入区域", p:[{k:"区域",o:["区域1","区域2"]}] },
+    { n:"玩家离开区域", p:[{k:"区域",o:["区域1","区域2"]}] },
+    { n:"玩家发送聊天", p:[{k:"内容",o:["任意内容","含关键词"]}] },
+    { n:"方块被破坏", p:[{k:"方块",o:["任意方块","草方块"]}] },
+    { n:"生物被击败", p:[{k:"生物",o:["任意生物","野人","野猪"]}] },
+    { n:"计时器到达时间", p:[{k:"计时器",o:["计时器1","计时器2"]}] },
+    { n:"游戏开始" },
+  ],
+  cond: [
+    { n:"玩家是房主" },
+    { n:"背包里有物品", p:[{k:"物品",items:"item"},{k:"数量≥",o:["1","5","10","64"]}] },
+    { n:"玩家等级≥", p:[{k:"等级",o:["5","10","30"]}] },
+    { n:"玩家在区域内", p:[{k:"区域",o:["区域1","区域2"]}] },
+    { n:"方块类型是", p:[{k:"方块",items:"block"}] },
+    { n:"随机概率", p:[{k:"概率",o:["10%","30%","50%","80%"]}] },
+    { n:"变量值等于", p:[{k:"变量",vars:true},{k:"值",o:["0","1","10"]}] },
+    { n:"计时器运行中", p:[{k:"计时器",o:["计时器1","计时器2"]}] },
+    { n:"玩家生命值<", p:[{k:"生命",o:["5","10","20"]}] },
+    { n:"生物数量≥", p:[{k:"数量",o:["1","5","10"]}] },
+  ],
+  act: [
+    { n:"给予玩家物品", p:[{k:"物品",items:"item"},{k:"数量",o:["1","5","10"]}] },
+    { n:"移除玩家物品", p:[{k:"物品",items:"item"},{k:"数量",o:["1","5"]}] },
+    { n:"传送玩家", p:[{k:"坐标",o:["0,0,0","出生点","区域1中心"]}] },
+    { n:"播放音效", p:[{k:"音效",o:["点击","胜利","爆炸","升级"]}] },
+    { n:"显示提示文字", p:[{k:"文字",o:["欢迎来到我的地图","任务完成","再来一次"]}] },
+    { n:"设置方块", p:[{k:"方块",items:"block"},{k:"位置",o:["玩家脚下","玩家面前"]}] },
+    { n:"生成生物", p:[{k:"生物",o:["野人","野猪","鸡"]},{k:"数量",o:["1","3","5"]}] },
+    { n:"让玩家受伤", p:[{k:"伤害",o:["1","5","10"]}] },
+    { n:"杀死玩家" },
+    { n:"设置玩家移速", p:[{k:"移速",o:["0.5","1","2"]}] },
+    { n:"创建计时器", p:[{k:"计时器",o:["计时器1","计时器2"]},{k:"秒",o:["1","3","10"]}] },
+    { n:"移除计时器", p:[{k:"计时器",o:["计时器1","计时器2"]}] },
+    { n:"设置变量", p:[{k:"变量",vars:true},{k:"值",o:["0","1","10"]}] },
+    { n:"变量自增", p:[{k:"变量",vars:true},{k:"增量",o:["1","2","5"]}] },
+    { n:"发送聊天", p:[{k:"内容",o:["游戏开始啦","找到宝藏了","时间到"]},{k:"颜色",o:["白","红","蓝","黄"]}] },
+    { n:"打开UI界面", p:[{k:"界面",o:["背包界面","任务面板","商店"]}] },
+    { n:"关闭UI界面" },
+    { n:"播放动画", p:[{k:"动画",o:["挥手","胜利","跳舞"]}] },
+  ]
+};
+
+const st = {
+  ver: "2", name: "未命名触发器", vars: [],
+  v2: { ev: [], cd: [], ac: [] },
+  v3: { ev: null, flow: [] }
+};
+const tgPanel = document.getElementById("tgPanel");
+const ITEM_SRC = (() => {
+  const load = words => TABS.filter(t => words.some(w => t.name.indexOf(w) >= 0))
+    .reduce((acc, t) => acc.concat(t.rows.map(r => ({ n: String(r[1]), id: r[0] }))), []);
+  const dedupe = arr => {
+    const m = new Map();
+    arr.forEach(x => { if(!m.has(x.n)) m.set(x.n, x); });
+    return [...m.values()].sort((a, b) => a.id - b.id);
+  };
+  return { item: dedupe(load(["方块", "道具"])), block: dedupe(load(["方块"])) };
+})();
+
+let tgCat = "event";
+
+function slotArr(key){
+  if(key === "ev") return st.v2.ev;
+  if(key === "cd") return st.v2.cd;
+  if(key === "ac") return st.v2.ac;
+  if(key === "flow") return st.v3.flow;
+  return null;
+}
+function slotAccept(key, cat){
+  if(st.ver === "2") return (key === "ev" && cat === "event") || (key === "cd" && cat === "cond") || (key === "ac" && cat === "act");
+  return (key === "ev3" && cat === "event") || (key === "flow" && (cat === "cond" || cat === "act"));
+}
+function kindOf(key, it){
+  if(key === "flow") return it.t;
+  if(key === "ev" || key === "ev3") return "event";
+  if(key === "cd") return "cond";
+  return "act";
+}
+
+function blockHTML(key, it, i){
+  const kind = kindOf(key, it);
+  const def = TG[kind][it.id];
+  if(!def) return "";
+  const tag = key === "flow"
+    ? `<span class="tag ${it.t}">${it.t === "cond" ? "如果" : "执行"}</span>` : "";
+  const params = (def.p || []).map(pr => {
+    if(pr.items){
+      const cur = (it.vals && it.vals[pr.k]) || "选择…";
+      return `<button class="pbtn" data-pp="${pr.k}" data-src="${pr.items}">${cur} ▾</button>`;
+    }
+    const opts = pr.vars ? (st.vars.length ? st.vars.map(v => v.n) : ["（还没变量）"]) : pr.o;
+    const cur = (it.vals && it.vals[pr.k]) || opts[0];
+    return `<select data-p="${pr.k}">${opts.map(o => `<option ${o === cur ? "selected" : ""}>${o}</option>`).join("")}</select>`;
+  }).join("");
+  return `<div class="tg-blk" data-slot="${key}" data-i="${i}">
+    <span class="grip">⣿</span>${tag}<span class="nm">${def.n}</span>${params}
+    <button class="x" aria-label="删除">✕</button>
+  </div>`;
+}
+
+function slotHTML(key, label, hint, color){
+  const arr = key === "ev3" ? (st.v3.ev ? [st.v3.ev] : []) : slotArr(key);
+  const body = arr.length
+    ? arr.map((it, i) => blockHTML(key, it, i)).join("")
+    : `<div class="ph">把上面的零件拖到这里</div>`;
+  return `<section class="tg-slot" data-slot="${key}">
+    <div class="sh"><i class="${color}"></i>${label}<span class="hint">${hint}</span></div>
+    <div class="body" data-slot="${key}">${body}</div>
+  </section>`;
+}
+
+function renderCanvas(){
+  const c = document.getElementById("tgCanvas");
+  c.innerHTML = st.ver === "2"
+    ? slotHTML("ev", "事件", "当…时", "ev") + slotHTML("cd", "条件", "满足才继续", "cd") + slotHTML("ac", "动作", "依次执行", "ac")
+    : slotHTML("ev3", "当", "事件触发", "ev") + slotHTML("flow", "执行流程", "可依次拖入如果 / 执行", "ac");
+}
+
+function renderChips(){
+  document.getElementById("tgChips").innerHTML =
+    TG[tgCat].map((it, i) => `<button class="cd" data-cat="${tgCat}" data-id="${i}">${it.n}</button>`).join("");
+}
+
+function renderVars(){
+  const lv = document.getElementById("listVar");
+  lv.innerHTML = st.vars.length
+    ? st.vars.map((v, i) => `<div class="tg-var"><span>${v.n}</span><span class="ty">${v.t}</span><button class="del" data-vi="${i}" aria-label="删除变量">✕</button></div>`).join("")
+    : `<div class="tg-empty">还没有变量</div>`;
+}
+
+/* ---- 拖拽引擎 ---- */
+let drag = null;
+
+function startDrag(e, payload, label){
+  drag = { payload, label, x: e.clientX, y: e.clientY, moved: false, ghost: null, srcEl: null };
+  const g = document.createElement("div");
+  g.className = "drag-ghost";
+  g.textContent = label;
+  g.style.left = e.clientX + "px";
+  g.style.top = e.clientY + "px";
+  g.style.display = "none";
+  document.body.appendChild(g);
+  drag.ghost = g;
+  if(e.target.closest(".tg-blk")) drag.srcEl = e.target.closest(".tg-blk");
+}
+
+function findSlot(x, y){
+  const el = document.elementFromPoint(x, y);
+  return el ? el.closest(".tg-slot") : null;
+}
+
+function dropIndex(slotEl, y){
+  const body = slotEl.querySelector(".body");
+  if(!body) return 0;
+  const blocks = [...body.querySelectorAll(".tg-blk")];
+  for(let i = 0; i < blocks.length; i++){
+    const r = blocks[i].getBoundingClientRect();
+    if(y < r.top + r.height / 2) return i;
+  }
+  return blocks.length;
+}
+
+function applyDrop(key, index, payload){
+  if(!slotAccept(key, payload.cat)) return false;
+  const item = payload.item
+    ? { id: payload.item.id, vals: Object.assign({}, payload.item.vals || {}, {}) }
+    : { id: payload.id, vals: {} };
+  if(key === "flow") item.t = payload.cat;
+
+  if(payload.from){
+    const sk = payload.from.key, si = payload.from.i;
+    if(sk === "ev3") st.v3.ev = null;
+    else{
+      const src = slotArr(sk);
+      if(src){
+        src.splice(si, 1);
+        if(sk === key && si < index) index--;
+      }
+    }
+  }
+
+  if(key === "ev3"){
+    st.v3.ev = item;
+  }else{
+    const arr = slotArr(key);
+    if(arr){
+      if(index >= 9999) index = arr.length;
+      arr.splice(Math.max(0, Math.min(index, arr.length)), 0, item);
+    }
+  }
+  renderCanvas();
+  return true;
+}
+
+tgPanel.addEventListener("pointerdown", e => {
+  if(e.target.closest("select")) return;
+  const chip = e.target.closest(".tg-chips .cd");
+  if(chip){
+    startDrag(e, { cat: chip.dataset.cat, id: +chip.dataset.id, item: null, from: null }, chip.textContent.trim());
+    return;
+  }
+  const blk = e.target.closest(".tg-blk");
+  if(blk && !e.target.closest(".x")){
+    const key = blk.dataset.slot, i = +blk.dataset.i;
+    const item = key === "ev3" ? st.v3.ev : (slotArr(key) || [])[i];
+    if(!item) return;
+    const kind = kindOf(key, item);
+    startDrag(e, { cat: kind, id: item.id, item, from: { key, i } }, TG[kind][item.id].n);
+  }
+});
+
+window.addEventListener("pointermove", e => {
+  if(!drag) return;
+  const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+  if(!drag.moved && Math.hypot(dx, dy) > 8){
+    drag.moved = true;
+    drag.ghost.style.display = "block";
+    if(drag.srcEl) drag.srcEl.classList.add("moving");
+  }
+  if(!drag.moved) return;
+  e.preventDefault();
+  drag.ghost.style.left = e.clientX + "px";
+  drag.ghost.style.top = e.clientY + "px";
+  const slotEl = findSlot(e.clientX, e.clientY);
+  document.querySelectorAll(".tg-slot").forEach(s => {
+    s.classList.toggle("over", !!slotEl && s === slotEl && slotAccept(s.dataset.slot, drag.payload.cat));
+  });
+}, { passive: false });
+
+window.addEventListener("pointerup", e => {
+  if(!drag) return;
+  const d = drag;
+  drag = null;
+  if(d.ghost && d.ghost.parentNode) d.ghost.parentNode.removeChild(d.ghost);
+  if(d.srcEl) d.srcEl.classList.remove("moving");
+  document.querySelectorAll(".tg-slot").forEach(s => s.classList.remove("over"));
+
+  if(!d.moved){
+    const auto = st.ver === "2"
+      ? (d.payload.cat === "event" ? "ev" : d.payload.cat === "cond" ? "cd" : "ac")
+      : (d.payload.cat === "event" ? "ev3" : "flow");
+    if(d.payload.from){ return; }
+    applyDrop(auto, 9999, d.payload);
+    return;
+  }
+  const slotEl = findSlot(e.clientX, e.clientY);
+  if(!slotEl) return;
+  const key = slotEl.dataset.slot;
+  applyDrop(key, dropIndex(slotEl, e.clientY), d.payload);
+});
+
+window.addEventListener("pointercancel", () => {
+  if(!drag) return;
+  if(drag.ghost && drag.ghost.parentNode) drag.ghost.parentNode.removeChild(drag.ghost);
+  if(drag.srcEl) drag.srcEl.classList.remove("moving");
+  drag = null;
+  document.querySelectorAll(".tg-slot").forEach(s => s.classList.remove("over"));
+});
+
+
+function openItemPicker(src, current, onPick){
+  const list = ITEM_SRC[src] || [];
+  sheetBody.innerHTML = `<h2 id="sheetTitle">选择${src === "block" ? "方块" : "物品"}</h2>
+    <input class="ip-search" id="ipSearch" placeholder="搜索名称，如 石头 / 钻石 / 草" aria-label="搜索">
+    <p class="ip-tip" id="ipTip">共 ${list.length} 条，来自官方 ID 表</p>
+    <div class="ip-list" id="ipList"></div>
+    <div class="acts"><button id="ipClose">取消</button></div>`;
+  mask.classList.add("open");
+  sheet.classList.add("open");
+  document.body.style.overflow = "hidden";
+
+  const listEl = document.getElementById("ipList");
+  const tipEl = document.getElementById("ipTip");
+  const paint = kw => {
+    const q = kw.trim();
+    const hit = q ? list.filter(x => x.n.indexOf(q) >= 0) : list;
+    const shown = hit.slice(0, 80);
+    tipEl.textContent = q
+      ? `匹配 ${hit.length} 条${hit.length > 80 ? "（只显示前 80 条，再输入更准）" : ""}`
+      : `共 ${list.length} 条，来自官方 ID 表`;
+    listEl.innerHTML = shown.length
+      ? shown.map(x => `<button class="ip-row" data-n="${x.n}"><span>${x.n}</span><em>${x.id}</em></button>`).join("")
+      : `<div class="ip-tip">没找到，换个关键词</div>`;
+  };
+  paint("");
+
+  document.getElementById("ipSearch").addEventListener("input", e => paint(e.target.value));
+  document.getElementById("ipClose").addEventListener("click", closeSheet);
+  listEl.addEventListener("click", e => {
+    const row = e.target.closest(".ip-row");
+    if(!row) return;
+    onPick(row.dataset.n);
+    closeSheet();
+  });
+}
+
+/* ---- 点击：删除 / 切换零件分类 / 版本 ---- */
+tgPanel.addEventListener("click", e => {
+  const pb = e.target.closest(".pbtn");
+  if(pb){
+    const blk = pb.closest(".tg-blk");
+    const key = blk.dataset.slot, i = +blk.dataset.i;
+    const item = key === "ev3" ? st.v3.ev : (slotArr(key) || [])[i];
+    if(!item) return;
+    const pname = pb.dataset.pp;
+    openItemPicker(pb.dataset.src, item.vals && item.vals[pname], name => {
+      item.vals = item.vals || {};
+      item.vals[pname] = name;
+      renderCanvas();
+    });
+    return;
+  }
+  const tab = e.target.closest(".tg-pal-tabs button");
+  if(tab){
+    tgCat = tab.dataset.cat;
+    document.querySelectorAll(".tg-pal-tabs button").forEach(b => b.classList.toggle("on", b === tab));
+    renderChips();
+    return;
+  }
+  const x = e.target.closest(".tg-blk .x");
+  if(x){
+    const blk = x.closest(".tg-blk");
+    const key = blk.dataset.slot, i = +blk.dataset.i;
+    if(key === "ev3") st.v3.ev = null;
+    else{
+      const arr = slotArr(key);
+      if(arr) arr.splice(i, 1);
+    }
+    renderCanvas();
+    return;
+  }
+  const vd = e.target.closest("[data-vi]");
+  if(vd){ st.vars.splice(+vd.dataset.vi, 1); renderVars(); renderCanvas(); return; }
+});
+
+document.querySelectorAll(".tgver").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll(".tgver").forEach(x => x.classList.toggle("on", x === b));
+  st.ver = b.dataset.ver;
+  renderCanvas();
+}));
+
+tgPanel.addEventListener("change", e => {
+  const sel = e.target;
+  if(!sel.dataset.p) return;
+  const blk = sel.closest(".tg-blk"); if(!blk) return;
+  const key = blk.dataset.slot, i = +blk.dataset.i;
+  const item = key === "ev3" ? st.v3.ev : (slotArr(key) || [])[i];
+  if(!item) return;
+  item.vals = item.vals || {};
+  item.vals[sel.dataset.p] = sel.value;
+});
+
+document.getElementById("tgName").addEventListener("input", e => { st.name = e.target.value; });
+
+document.getElementById("varAdd").addEventListener("click", () => {
+  const n = document.getElementById("varName").value.trim();
+  const t = document.getElementById("varType").value;
+  if(!n){ showToast("先输入变量名"); return; }
+  if(st.vars.some(v => v.n === n)){ showToast("已有同名变量"); return; }
+  st.vars.push({ n, t });
+  document.getElementById("varName").value = "";
+  renderVars();
+  renderCanvas();
+  showToast(`已创建变量「${n}」（${t}）`);
+});
+
+document.getElementById("tgReset").addEventListener("click", () => {
+  st.v2 = { ev: [], cd: [], ac: [] };
+  st.v3 = { ev: null, flow: [] };
+  st.vars = [];
+  renderCanvas(); renderVars();
+  document.getElementById("tgOut").hidden = true;
+  showToast("已清空");
+});
+
+document.getElementById("tgCode").addEventListener("click", () => {
+  const out = document.getElementById("tgOut");
+  const describe = it => {
+    const kind = it.t || it.kind;
+    const def = TG[kind][it.id];
+    const ps = (def.p || []).map(pr => `${pr.k}=${(it.vals && it.vals[pr.k]) || "—"}`).join("，");
+    return ps ? `${def.n}（${ps}）` : def.n;
+  };
+  const lines = [];
+  if(st.vars.length) lines.push("-- 变量：" + st.vars.map(v => `${v.n}:${v.t}`).join("，"));
+  lines.push(`-- 触发器「${st.name}」${st.ver}.0`);
+  if(st.ver === "2"){
+    lines.push("-- 事件");
+    st.v2.ev.forEach(i => lines.push("--   " + describe({ kind: "event", id: i.id, vals: i.vals })));
+    lines.push("-- 条件");
+    st.v2.cd.forEach(i => lines.push("--   " + describe({ kind: "cond", id: i.id, vals: i.vals })));
+    lines.push("-- 动作");
+    st.v2.ac.forEach(i => lines.push("--   " + describe({ kind: "act", id: i.id, vals: i.vals })));
+  }else{
+    lines.push("-- 当：" + (st.v3.ev ? describe({ kind: "event", id: st.v3.ev.id, vals: st.v3.ev.vals }) : "（未选）"));
+    st.v3.flow.forEach(s => lines.push(`-- ${s.t === "cond" ? "如果" : "执行"}：` + describe({ t: s.t, id: s.id, vals: s.vals })));
+  }
+  if(lines.length <= 2) lines.push("--（还没搭建内容）");
+  out.hidden = false;
+  out.textContent = lines.join("\n");
+});
+
+renderChips();
+renderCanvas();
+renderVars();
 
 /* ---------- 启动 ---------- */
 buildTabs(); buildChips(); shown = STEP; render();
